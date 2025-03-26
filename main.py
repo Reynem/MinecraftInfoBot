@@ -25,8 +25,10 @@ def getDescServer(adress):
 Список игроков: {', '.join("`" + i["name"] + "`" for i in data['players list'])}
 Версия: `{data['version']}`
 """
-    except Exception:
-        msg = "*Error*"
+    except KeyError as e:
+        return f"Некорректные данные от API: отсутствует ключ {e}"
+    except Exception as e:
+        return f"Неизвестная ошибка: {str(e)}"
     return msg
 
 
